@@ -40,12 +40,15 @@ def transcribe(task, device, language, model_size, mic, file):
         text_value = tmry
         return {"text":tmry['choices'][0]['text']
 }
+        response = requests.request("POST", url, headers=headers, data=payload)
+        print(response)
+        return {"text":trascript["text"],"summary":response}
 
 
 
 demo = gr.Interface(transcribe, 
     inputs=[
-        gr.Radio(['transcribe', 'translate'], label= 'Task'),
+        gr.Radio(['transcribe', 'summarize'], label= 'Task'),
         gr.Radio(['gpu', 'cpu'], label= 'Device'),
         gr.Dropdown(lang_list, value='Detect',  label='Audio Language'),
         gr.Dropdown(['tiny', 'tiny.en', 'base', 'base.en', 'small', 'small.en', 'medium', 'medium.en', 'large'], value='small', label='Model Size'), 
@@ -53,4 +56,4 @@ demo = gr.Interface(transcribe,
         gr.Audio(source='upload', type='filepath', optional=True, label='Audio File')
         ], 
     outputs="text")
-demo.launch() 
+demo.launch(share=True) 
