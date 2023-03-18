@@ -35,11 +35,6 @@ def transcribe(task, device, language, model_size, mic, file):
         'Content-Type': 'application/json',
         'customer-id': '',#insert customer-id here
         'x-api-key': ''}#insert api key here
-        summary = requests.request("POST", url, headers=headers, data=payload)
-        tmry = summary.json()
-        text_value = tmry
-        return {"text":tmry['choices'][0]['text']
-}
         response = requests.request("POST", url, headers=headers, data=payload)
         print(response)
         return {"text":trascript["text"],"summary":response}
