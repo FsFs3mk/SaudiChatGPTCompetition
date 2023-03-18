@@ -24,7 +24,7 @@ def transcribe(task, device, language, model_size, mic, file):
         else:
             return "You must either provide a mic recording or a file"
         trascript = model.transcribe(audio, **args)
-        url = "https://experimental.willow.vectara.io/v1/completions"
+        url = "" #insert api url here
 
         payload = json.dumps({
         "model": "text-davinci-003",
@@ -33,8 +33,8 @@ def transcribe(task, device, language, model_size, mic, file):
         "temperature": 0})
         headers = {
         'Content-Type': 'application/json',
-        'customer-id': '2657721878',
-        'x-api-key': 'zqt_nmmeFnHLsvtJFg0fqsSHdDCgBtKOj6fnREl1Tg'}
+        'customer-id': '',#insert customer-id here
+        'x-api-key': ''}#insert api key here
         summary = requests.request("POST", url, headers=headers, data=payload)
         tmry = summary.json()
         text_value = tmry
