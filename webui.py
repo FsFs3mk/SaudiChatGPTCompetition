@@ -38,7 +38,7 @@ def transcribe(task, device, language, model_size, mic, file):
         summary = requests.request("POST", url, headers=headers, data=payload)
         tmry = summary.json()
         text_value = tmry
-        return {"text":tmry['summary']['choices'][0]['text']
+        return {"text":tmry['choices'][0]['text']
 }
 
 
